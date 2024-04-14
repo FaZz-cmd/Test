@@ -24,15 +24,12 @@ def export():
     output_filename = os.path.join(output_dir_value)
     output_filename = os.path.normpath(output_filename)
 
-    # Construction de la commande FFmpeg
     ffmpeg_command = f'ffmpeg -hide_banner -i "{input_path_value}" -sws_flags spline+accurate_rnd+full_chroma_int -color_trc 2 -colorspace 2 -color_primaries 2 -map 0:v -c:v png -pix_fmt rgb24 -start_number 0 "{output_filename}/%08d.png"'
 
-    # Fonction exécutée dans un thread séparé pour lancer la commande FFmpeg
     def run_ffmpeg_command():
         subprocess.run(ffmpeg_command, shell=True)
-        progress_bar['value'] = 100  # Mettre à jour la barre de progression à 100% une fois l'exécution terminée
-
-    # Démarrer un nouveau thread pour exécuter la commande FFmpeg
+        progress_bar['value'] = 100
+        
     ffmpeg_thread = threading.Thread(target=run_ffmpeg_command)
     ffmpeg_thread.start()
 
@@ -52,7 +49,6 @@ tk.Button(root, text="Parcourir...", command=browse_output).pack()
 
 tk.Button(root, text="Exporter", command=export).pack()
 
-# Création d'une barre de progression Tkinter
 progress_bar = Progressbar(root, orient="horizontal", length=200, mode="determinate")
 progress_bar.pack()
 
