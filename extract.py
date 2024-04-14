@@ -18,7 +18,7 @@ def export():
     output_dir_value = output_dir.get()
 
     if not input_path_value or not output_dir_value:
-        print("Veuillez sélectionner un chemin d'accès input et output.")
+        print("Please select an input and output path.")
         return
 
     output_filename = os.path.join(output_dir_value)
@@ -39,15 +39,15 @@ root.title("Export Video Frames to PNG")
 input_path = tk.StringVar()
 output_dir = tk.StringVar()
 
-tk.Label(root, text="Chemin d'accès input :").pack()
+tk.Label(root, text="Input Path:").pack()
 tk.Entry(root, textvariable=input_path, width=50).pack()
-tk.Button(root, text="Parcourir...", command=browse_input).pack()
+tk.Button(root, text="Browse...", command=browse_input).pack()
 
-tk.Label(root, text="Chemin d'accès output :").pack()
+tk.Label(root, text="Output Path:").pack()
 tk.Entry(root, textvariable=output_dir, width=50).pack()
-tk.Button(root, text="Parcourir...", command=browse_output).pack()
+tk.Button(root, text="Browse...", command=browse_output).pack()
 
-tk.Button(root, text="Exporter", command=export).pack()
+tk.Button(root, text="Export", command=export).pack()
 
 progress_bar = Progressbar(root, orient="horizontal", length=200, mode="determinate")
 progress_bar.pack()
