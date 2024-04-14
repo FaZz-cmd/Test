@@ -6,4 +6,4 @@ I will modify the script to make it more complex in the future. I use an ffmpeg 
 je vais modifier le script pour le rendre plus complexe à l’avenir. j’utilise une ligne ffmpeg tout les jours et je trouvais ça chiant de devoir modifier le chemin input et output à chaque fois dans la ligne, j’ai donc créé une petite interface (très très simple) ;)
 
 
-il y a certainement des erreurs des lignes inutiles dans mon code mais j'apprends 🧐
+il y a certainement des lignes inutiles dans mon code mais j'apprends 🧐
