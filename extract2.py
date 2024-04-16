@@ -57,7 +57,6 @@ tk.Button(root, text="Browse...", command=browse_output).pack()
 
 tk.Label(root, text="Format:").pack()
 
-# Create buttons for each format choice
 format_choices = ['png', 'tiff', 'jpeg']
 for format_choice in format_choices:
     tk.Button(root, text=format_choice, command=lambda f=format_choice: export(f)).pack()
