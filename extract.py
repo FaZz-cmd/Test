@@ -4,6 +4,7 @@ from tkinter.ttk import Progressbar
 import os
 import subprocess
 import threading
+import shutil
 
 def browse_input():
     selected_file = filedialog.askopenfilename(filetypes=[('Video Files', '*.mkv *.mp4 *.webm *.mov')])
@@ -11,7 +12,10 @@ def browse_input():
         input_path.set(selected_file.replace('/', '\\'))
 
 def browse_output():
-    output_dir.set(filedialog.askdirectory())
+    output_dir_value = filedialog.askdirectory()
+    if not os.path.exists(output_dir_value):
+        os.makedirs(output_dir_value)
+    output_dir.set(output_dir_value)
 
 def export():
     input_path_value = input_path.get()
@@ -28,8 +32,7 @@ def export():
 
     def run_ffmpeg_command():
         subprocess.run(ffmpeg_command, shell=True)
-        progress_bar['value'] = 100
-        
+
     ffmpeg_thread = threading.Thread(target=run_ffmpeg_command)
     ffmpeg_thread.start()
 
@@ -48,8 +51,5 @@ tk.Entry(root, textvariable=output_dir, width=50).pack()
 tk.Button(root, text="Browse...", command=browse_output).pack()
 
 tk.Button(root, text="Export", command=export).pack()
-
-progress_bar = Progressbar(root, orient="horizontal", length=200, mode="determinate")
-progress_bar.pack()
 
 root.mainloop()
