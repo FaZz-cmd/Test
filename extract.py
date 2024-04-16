@@ -6,7 +6,7 @@ import subprocess
 import threading
 
 def browse_input():
-    selected_file = filedialog.askopenfilename(filetypes=[('Video Files',  '*.mkv *.mp4 *.webm *.mov')])
+    selected_file = filedialog.askopenfilename(filetypes=[('Video Files', '*.mkv *.mp4 *.webm *.mov')])
     if selected_file:
         input_path.set(selected_file.replace('/', '\\'))
 
