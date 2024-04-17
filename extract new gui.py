@@ -47,9 +47,9 @@ def export():
     ffmpeg_thread = threading.Thread(target=run_ffmpeg_command)
     ffmpeg_thread.start()
 
-root = customtkinter.CTk()  # Use customtkinter.CTk() instead of tk.Tk()
+root = customtkinter.CTk()
 root.title("Export Video Frames to Image")
-root.geometry("500x300")  # Set the window size to 500x300
+root.geometry("500x300")
 
 input_path = customtkinter.StringVar()
 output_dir = customtkinter.StringVar()
