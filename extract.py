@@ -71,6 +71,6 @@ format_combobox['values'] = ('PNG', 'TIFF', 'JPEG')
 format_combobox.current(0)
 format_combobox.pack()
 
-tk.Button(root, text="Export", command=export).pack()
+tk.Button(root, text="Extract", command=export).pack()
 
 root.mainloop()
