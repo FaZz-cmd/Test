@@ -50,12 +50,15 @@ input_path = tk.StringVar()
 output_dir = tk.StringVar()
 
 tk.Label(root, text="Input Path:").pack()
-tk.Entry(root, textvariable=input_path, width=50).pack()
+input_path_entry = tk.Entry(root, textvariable=input_path, width=50, state="disabled")
+input_path_entry.pack()
 tk.Button(root, text="Browse...", command=browse_input).pack()
 
 tk.Label(root, text="Output Path:").pack()
-tk.Entry(root, textvariable=output_dir, width=50).pack()
+output_dir_entry = tk.Entry(root, textvariable=output_dir, width=50, state="disabled")
+output_dir_entry.pack()
 tk.Button(root, text="Browse...", command=browse_output).pack()
+
 
 style = Style()
 style.theme_use('default')
