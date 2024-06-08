@@ -36,5 +36,4 @@ resolution_options.pack(pady=10)
 export_button = ctk.CTkButton(app, text="Exporter", command=export_video)
 export_button.pack(pady=20)
 
-# Boucle principale de l'application
 app.mainloop()
