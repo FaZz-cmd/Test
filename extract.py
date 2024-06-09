@@ -1,10 +1,8 @@
-import tkinter as tk
+import customtkinter as ctk
 from tkinter import filedialog
-from tkinter.ttk import Progressbar, Combobox, Style
 import os
 import subprocess
 import threading
-import shutil
 
 def browse_input():
     selected_file = filedialog.askopenfilename(filetypes=[('Video Files', '*.mkv *.mp4 *.webm *.mov')])
@@ -33,7 +31,7 @@ def export():
     if format == 'PNG':
         ffmpeg_command = f'ffmpeg -hide_banner -i "{input_path_value}" -sws_flags spline+accurate_rnd+full_chroma_int -color_trc 2 -colorspace 2 -color_primaries 2 -map 0:v -c:v png -pix_fmt rgb24 -start_number 0 "{output_filename}/%08d.png"'
     elif format == 'TIFF':
-        ffmpeg_command = f'ffmpeg -hide_banner -i "{input_path_value}" -sws_flags spline+accurate_rnd+full_chroma_int -color_trc 2 -colorspace 2 -color_primaries 2 -map 0:v -c:v tiff -pix_fmt rgb24 -start_number 0 "{output_filename}/%08d.tiff"'
+        ffmpeg_command = f'ffmpeg -hide_banner -i "{input_path_value}" -sws_flags spline+accurate_rnd+full_chroma_int -color_trc 1 -colorspace 1 -color_primaries 1 -map 0:v -c:v tiff -pix_fmt rgb24 -compression_algo deflate -start_number 0 -movflags frag_keyframe+empty_moov+delay_moov+use_metadata_tags+write_colr -bf 0 "{output_filename}/%08d.tiff"'
     elif format == 'JPEG':
         ffmpeg_command = f'ffmpeg -hide_banner -i "{input_path_value}" -sws_flags spline+accurate_rnd+full_chroma_int -color_trc 2 -colorspace 2 -color_primaries 2 -map 0:v -c:v mjpeg -pix_fmt yuvj420p -q:v 1 -start_number 0 "{output_filename}/%08d.jpg"'
 
@@ -43,34 +41,29 @@ def export():
     ffmpeg_thread = threading.Thread(target=run_ffmpeg_command)
     ffmpeg_thread.start()
 
-root = tk.Tk()
-root.title("Export Video Frames to Image")
+app = ctk.CTk()
+app.title("Export Video Frames to Image")
+app.geometry("500x350")
 
-input_path = tk.StringVar()
-output_dir = tk.StringVar()
+input_path = ctk.StringVar()
+output_dir = ctk.StringVar()
 
-tk.Label(root, text="Input Path:").pack()
-input_path_entry = tk.Entry(root, textvariable=input_path, width=50, state="disabled")
-input_path_entry.pack()
-tk.Button(root, text="Browse...", command=browse_input).pack()
+ctk.CTkLabel(app, text="Input Path:").pack(pady=10)
+input_path_entry = ctk.CTkEntry(app, textvariable=input_path, width=400, state="disabled")
+input_path_entry.pack(pady=5)
+ctk.CTkButton(app, text="Browse...", command=browse_input).pack(pady=5)
 
-tk.Label(root, text="Output Path:").pack()
-output_dir_entry = tk.Entry(root, textvariable=output_dir, width=50, state="disabled")
-output_dir_entry.pack()
-tk.Button(root, text="Browse...", command=browse_output).pack()
+ctk.CTkLabel(app, text="Output Path:").pack(pady=10)
+output_dir_entry = ctk.CTkEntry(app, textvariable=output_dir, width=400, state="disabled")
+output_dir_entry.pack(pady=5)
+ctk.CTkButton(app, text="Browse...", command=browse_output).pack(pady=5)
 
+format_var = ctk.StringVar(value='PNG')
 
-style = Style()
-style.theme_use('default')
-style.configure('TCombobox', width=15)
+ctk.CTkLabel(app, text="Format:").pack(pady=10)
+format_combobox = ctk.CTkOptionMenu(app, variable=format_var, values=['PNG', 'TIFF', 'JPEG'])
+format_combobox.pack(pady=5)
 
-format_var = tk.StringVar()
+ctk.CTkButton(app, text="Extract", command=export).pack(pady=20)
 
-format_combobox = Combobox(root, textvariable=format_var, state='readonly')
-format_combobox['values'] = ('PNG', 'TIFF', 'JPEG')
-format_combobox.current(0)
-format_combobox.pack()
-
-tk.Button(root, text="Extract", command=export).pack()
-
-root.mainloop()
+app.mainloop()
