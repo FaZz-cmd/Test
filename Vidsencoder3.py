@@ -104,7 +104,8 @@ resolution_mapping = {
     "720p": "-vf scale=1280:720",
     "1080p": "-vf scale=1920:1080",
     "2k": "-vf scale=2560:1440",
-    "4k": "-vf scale=3840:2160"
+    "4k": "-vf scale=3840:2160",
+    "8k": "-vf scale=7680:4320"
 }
 
 # Frame for input and output selection
@@ -144,7 +145,7 @@ format_combobox = ctk.CTkOptionMenu(frame_settings, variable=format_var, values=
 format_combobox.grid(row=1, column=1, padx=5, pady=5, sticky="w")
 
 ctk.CTkLabel(frame_settings, text="Resolution:").grid(row=2, column=0, padx=5, pady=5, sticky="e")
-resolution_combobox = ctk.CTkOptionMenu(frame_settings, variable=resolution_var, values=["Keep", "720p", "1080p", "2k", "4k"])
+resolution_combobox = ctk.CTkOptionMenu(frame_settings, variable=resolution_var, values=["Keep", "720p", "1080p", "2k", "4k", "8k"])
 resolution_combobox.grid(row=2, column=1, padx=5, pady=5, sticky="w")
 
 # Button to start encoding
