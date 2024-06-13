@@ -43,7 +43,7 @@ def export():
 
 app = ctk.CTk()
 app.title("Export Video Frames to Image")
-app.geometry("500x350")
+app.geometry("500x432")
 
 input_path = ctk.StringVar()
 output_dir = ctk.StringVar()
