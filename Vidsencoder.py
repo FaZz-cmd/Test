@@ -75,7 +75,7 @@ def encode_video():
     threading.Thread(target=run_ffmpeg_command).start()
 
 app = ctk.CTk()
-app.title("Vidsencoder 1.0.0")
+app.title("Vidsencoder v1.0.0")
 app.geometry("517x330")
 
 input_path = ctk.StringVar()
