@@ -23,17 +23,14 @@ def export_video():
     except Exception as e:
         tkmb.showerror("Error", f"An error occurred: {str(e)}")
 
-
 def start_export():
     export_thread = threading.Thread(target=export_video)
     export_thread.start()
-
 
 def select_output_folder():
     folder_path = filedialog.askdirectory()
     output_entry.delete(0, ctk.END)
     output_entry.insert(0, folder_path)
-
 
 app = ctk.CTk()
 app.title("YTDownloader")
