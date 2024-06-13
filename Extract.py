@@ -42,7 +42,7 @@ def export():
     ffmpeg_thread.start()
 
 app = ctk.CTk()
-app.title("Export Video Frames to Image")
+app.title("Extract 2.0.0")
 app.geometry("500x432")
 
 input_path = ctk.StringVar()
