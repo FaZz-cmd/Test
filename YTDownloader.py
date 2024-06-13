@@ -33,7 +33,7 @@ def select_output_folder():
     output_entry.insert(0, folder_path)
 
 app = ctk.CTk()
-app.title("YTDownloader")
+app.title("YTDownloader v1.0.0")
 app.geometry("500x415")
 
 url_label = ctk.CTkLabel(app, text="YouTube video URL:")
